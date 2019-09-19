@@ -6,6 +6,7 @@ namespace mpp_tracer
     public class Tracer : ITracer
     {
         private readonly TraceResult _traceResult;
+        private Tracer _instanse;
 
         public Tracer()
         {
@@ -17,18 +18,30 @@ namespace mpp_tracer
             var method = new StackTrace(1).GetFrame(0).GetMethod();
             var idThread = Thread.CurrentThread.ManagedThreadId;
 
-            _traceResult.StartListenThread(idThread, method);
+            _traceResult.StartTracingThread(idThread, method);
         }
 
         public void StopTrace()
         {
             var idThread = Thread.CurrentThread.ManagedThreadId;
-            _traceResult.StopListenThread(idThread);
+            _traceResult.StopTracingThread(idThread);
         }
 
         public TraceResult GetTraceResult()
         {
             return _traceResult;
+        }
+
+        public Tracer getInstanse()
+        {
+            if (_instanse != null) return _instanse;
+
+            lock (this)
+            {
+                if (_instanse == null) _instanse = new Tracer();
+            }
+
+            return _instanse;
         }
     }
 }

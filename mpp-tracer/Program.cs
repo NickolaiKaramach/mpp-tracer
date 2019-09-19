@@ -6,28 +6,25 @@ namespace mpp_tracer
 {
     public class Program
     {
+        private static readonly Tracer Tracer = new Tracer();
+
         public static void Main1(string[] args)
         {
-            Thread thread1 = new Thread(() => ActionClass.Job3());
-            Thread thread2 = new Thread(() => ActionClass.Job3());
-            
+            var thread1 = new Thread(() => ActionClass.Job3());
+            var thread2 = new Thread(() => ActionClass.Job3());
+
             thread1.Name = "Thread#1 ";
             thread2.Name = "Thread#2 ";
-            
+
             thread1.Start();
             Thread.Sleep(500);
             thread2.Start();
-            
+
             thread1.Join();
             thread2.Join();
-            
-            
-            
         }
-        
-        private static readonly Tracer Tracer = new Tracer();
 
-        private static void Main(string[] args)
+        private static void Main()
         {
             Tracer.StartTrace();
             TestMethod1(10);
@@ -44,13 +41,13 @@ namespace mpp_tracer
 
             TestMethod5();
 
-            foreach (var thread in threads)
-            {
-                thread.Join();
-            }
+            foreach (var thread in threads) thread.Join();
 
             Tracer.StopTrace();
+
+            XmlTraceResultFormatter xmlTraceResultFormatter = new XmlTraceResultFormatter();
             
+            Console.WriteLine(xmlTraceResultFormatter.FormatTraceResult(Tracer.GetTraceResult()));
             Console.ReadKey();
         }
 
@@ -60,17 +57,14 @@ namespace mpp_tracer
             var testInt = 0;
             Thread.Sleep(100);
             TestMethod1(int.MaxValue);
-            for (var i = 0; i < (int)value; i++)
-            {
-                testInt += i;
-            }
+            for (var i = 0; i < (int) value; i++) testInt += i;
             TestMethod3(10);
             Tracer.StopTrace();
         }
 
         private static void TestMethod3(object value)
         {
-            for (int i = 0; i < (int)value; i++)
+            for (var i = 0; i < (int) value; i++)
             {
                 Tracer.StartTrace();
                 VoidMethod();
@@ -95,11 +89,12 @@ namespace mpp_tracer
         private static void TestMethod5()
         {
             Tracer.StartTrace();
-            for (int i = 0; i < 5; i++)
+            for (var i = 0; i < 5; i++)
             {
                 var thread = new Thread(TestMethod4);
                 thread.Start();
             }
+
             Tracer.StopTrace();
         }
 
@@ -109,6 +104,5 @@ namespace mpp_tracer
             Thread.Sleep(100);
             Tracer.StopTrace();
         }
-        
     }
 }

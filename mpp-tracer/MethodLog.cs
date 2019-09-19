@@ -1,4 +1,3 @@
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
@@ -7,17 +6,17 @@ namespace mpp_tracer
 {
     public class MethodLog
     {
-        private MethodMetadata _metadata;
-
-        private readonly List<MethodLog> _methods = new List<MethodLog>();
-        
-        public long TimeSpent => _watch.ElapsedMilliseconds;
+        public readonly List<MethodLog> NestedMethods = new List<MethodLog>();
         private readonly Stopwatch _watch = new Stopwatch();
+        public MethodMetadata Metadata { get; }
 
         public MethodLog(MethodBase methodBase)
         {
-            _metadata = new MethodMetadata(methodBase);
+            Metadata = new MethodMetadata(methodBase);
+            StartTrace();
         }
+
+        public long TimeSpent => _watch.ElapsedMilliseconds;
 
         public void StartTrace()
         {
@@ -31,7 +30,7 @@ namespace mpp_tracer
 
         public void AddNestedMethods(MethodLog methodLog)
         {
-            _methods.Add(methodLog);
+            NestedMethods.Add(methodLog);
         }
     }
 }

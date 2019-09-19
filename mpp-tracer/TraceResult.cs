@@ -10,20 +10,17 @@ namespace mpp_tracer
 
         public IEnumerable<KeyValuePair<int, ThreadLog>> ThreadsLogs => _threadsLogs;
 
-        public void StartListenThread(int idThread, MethodBase methodBase)
+        public void StartTracingThread(int idThread, MethodBase methodBase)
         {
             var threadLog = new ThreadLog {ThreadId = idThread};
 
             var threadInfo = _threadsLogs.GetOrAdd(idThread, threadLog);
-            threadInfo.StartTracingMethod( new MethodLog(methodBase));
+            threadInfo.StartTracingMethod(new MethodLog(methodBase));
         }
 
-        public void StopListenThread(int idThread)
+        public void StopTracingThread(int idThread)
         {
-            if (_threadsLogs.TryGetValue(idThread, out var threadInfo))
-            {
-                threadInfo.StopTrace();
-            }
+            if (_threadsLogs.TryGetValue(idThread, out var threadInfo)) threadInfo.StopTrace();
         }
     }
 }

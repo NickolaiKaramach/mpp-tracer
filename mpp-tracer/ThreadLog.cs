@@ -1,14 +1,15 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace mpp_tracer
 {
     public class ThreadLog
     {
-        public int ThreadId { get; set; } 
-        public long TimeSpent;
-
+        private readonly Stack<MethodLog> _methodStackTrace = new Stack<MethodLog>();
+        public int ThreadId { get; set; }
+        public long TimeSpent => AllMethods.Select(x => x.TimeSpent).Sum();
         public List<MethodLog> AllMethods { get; } = new List<MethodLog>();
-        private Stack<MethodLog> _methodStackTrace = new Stack<MethodLog>();
+
 
         public void StartTracingMethod(MethodLog methodLog)
         {
@@ -20,6 +21,7 @@ namespace mpp_tracer
             {
                 _methodStackTrace.Peek().AddNestedMethods(methodLog);
             }
+
             _methodStackTrace.Push(methodLog);
         }
 
