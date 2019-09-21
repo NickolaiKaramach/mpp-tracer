@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 
 namespace mpp_tracer
@@ -46,8 +47,13 @@ namespace mpp_tracer
             Tracer.StopTrace();
 
             XmlTraceResultFormatter xmlTraceResultFormatter = new XmlTraceResultFormatter();
+            JsonTraceResultFormatter jsonTraceResultFormatter = new JsonTraceResultFormatter();
+            FileWriter fileWriter = new FileWriter(jsonTraceResultFormatter, "text.json");
+            ConsoleWriter consoleWriter = new ConsoleWriter(xmlTraceResultFormatter);
             
-            Console.WriteLine(xmlTraceResultFormatter.FormatTraceResult(Tracer.GetTraceResult()));
+            consoleWriter.WriteTraceResult(Tracer.GetTraceResult());
+            
+            fileWriter.WriteTraceResult(Tracer.GetTraceResult());
             Console.ReadKey();
         }
 
