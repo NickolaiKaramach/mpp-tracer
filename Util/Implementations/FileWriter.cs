@@ -1,13 +1,13 @@
 using System;
 using System.IO;
-using System.Runtime.Serialization;
+using mpp_tracer.Classes.Model;
+using Util.Interfaces;
 
-namespace mpp_tracer
+namespace Util.Implementations
 {
     public class FileWriter : IWriter
     {
-        private ITraceResultFormatter _iTraceResultFormatter;
-        public string UriToFile { get; set; }
+        private readonly ITraceResultFormatter _iTraceResultFormatter;
 
         public FileWriter(ITraceResultFormatter traceResultFormatter, string uriToFile)
         {
@@ -15,14 +15,16 @@ namespace mpp_tracer
             UriToFile = uriToFile;
         }
 
+        public string UriToFile { get; set; }
+
         public void WriteString(string _string)
         {
             try
             {
-                FileStream fileStream = File.Open(UriToFile,
+                var fileStream = File.Open(UriToFile,
                     FileMode.Create, FileAccess.Write);
 
-                StreamWriter fileWriter = new StreamWriter(fileStream);
+                var fileWriter = new StreamWriter(fileStream);
 
                 fileWriter.WriteLine(_string);
                 fileWriter.Flush();

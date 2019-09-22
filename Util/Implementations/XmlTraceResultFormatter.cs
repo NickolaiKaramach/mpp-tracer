@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
+using mpp_tracer.Classes;
+using mpp_tracer.Classes.Model;
+using Util.Interfaces;
 
-namespace mpp_tracer
+namespace Util.Implementations
 {
     public class XmlTraceResultFormatter : ITraceResultFormatter
     {
@@ -14,14 +17,11 @@ namespace mpp_tracer
             {
                 var threadNode = FormatThreadNode(threadLog);
 
-                foreach (var methodLog in threadLog.Value.AllMethods)
-                {
-                    threadNode.Add(FormatAllMethodNode(methodLog));
-                }
+                foreach (var methodLog in threadLog.Value.AllMethods) threadNode.Add(FormatAllMethodNode(methodLog));
 
                 rootNode.Add(threadNode);
             }
-            
+
             xDoc.Add(rootNode);
             return xDoc.ToString();
         }
@@ -39,10 +39,7 @@ namespace mpp_tracer
         {
             var result = FormatMethodNode(methodLog);
 
-            foreach (var nestedMethod in methodLog.NestedMethods)
-            {
-                result.Add(FormatAllMethodNode(nestedMethod));
-            }
+            foreach (var nestedMethod in methodLog.NestedMethods) result.Add(FormatAllMethodNode(nestedMethod));
 
             return result;
         }
@@ -50,7 +47,7 @@ namespace mpp_tracer
         private XElement FormatMethodNode(MethodLog methodLog)
         {
             var result = new XElement("method");
-            
+
             result.Add(new XAttribute("name", methodLog.Metadata.Name));
             result.Add(new XAttribute("time", methodLog.TimeSpent));
             result.Add(new XAttribute("class", methodLog.Metadata.ClassName));

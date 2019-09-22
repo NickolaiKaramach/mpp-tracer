@@ -2,7 +2,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace mpp_tracer
+namespace mpp_tracer.Classes.Model
 {
     public class TraceResult
     {

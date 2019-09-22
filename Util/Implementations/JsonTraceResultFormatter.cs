@@ -1,6 +1,8 @@
+using mpp_tracer.Classes.Model;
 using Newtonsoft.Json;
+using Util.Interfaces;
 
-namespace mpp_tracer
+namespace Util.Implementations
 {
     public class JsonTraceResultFormatter : ITraceResultFormatter
     {

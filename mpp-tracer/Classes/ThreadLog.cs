@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace mpp_tracer
+namespace mpp_tracer.Classes
 {
     public class ThreadLog
     {
@@ -14,13 +14,9 @@ namespace mpp_tracer
         public void StartTracingMethod(MethodLog methodLog)
         {
             if (AllMethods.Count == 0)
-            {
                 AllMethods.Add(methodLog);
-            }
             else
-            {
                 _methodStackTrace.Peek().AddNestedMethods(methodLog);
-            }
 
             _methodStackTrace.Push(methodLog);
         }

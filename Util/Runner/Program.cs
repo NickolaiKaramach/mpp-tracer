@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading;
+using mpp_tracer.Classes;
+using Util.Implementations;
 
-namespace mpp_tracer
+namespace Util.Runner
 {
     public class Program
     {
@@ -11,8 +12,8 @@ namespace mpp_tracer
 
         public static void Main1(string[] args)
         {
-            var thread1 = new Thread(() => ActionClass.Job3());
-            var thread2 = new Thread(() => ActionClass.Job3());
+            var thread1 = new Thread(ActionClass.Job3);
+            var thread2 = new Thread(ActionClass.Job3);
 
             thread1.Name = "Thread#1 ";
             thread2.Name = "Thread#2 ";
@@ -46,13 +47,13 @@ namespace mpp_tracer
 
             Tracer.StopTrace();
 
-            XmlTraceResultFormatter xmlTraceResultFormatter = new XmlTraceResultFormatter();
-            JsonTraceResultFormatter jsonTraceResultFormatter = new JsonTraceResultFormatter();
-            FileWriter fileWriter = new FileWriter(jsonTraceResultFormatter, "text.json");
-            ConsoleWriter consoleWriter = new ConsoleWriter(xmlTraceResultFormatter);
-            
+            var xmlTraceResultFormatter = new XmlTraceResultFormatter();
+            var jsonTraceResultFormatter = new JsonTraceResultFormatter();
+            var fileWriter = new FileWriter(jsonTraceResultFormatter, "text.json");
+            var consoleWriter = new ConsoleWriter(xmlTraceResultFormatter);
+
             consoleWriter.WriteTraceResult(Tracer.GetTraceResult());
-            
+
             fileWriter.WriteTraceResult(Tracer.GetTraceResult());
             Console.ReadKey();
         }

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading;
 
-namespace mpp_tracer
+namespace Util.Runner
 {
-    public class ActionClass
+    public static class ActionClass
     {
         public static void Job1()
         {

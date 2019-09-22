@@ -1,6 +1,6 @@
-using System;
+using mpp_tracer.Classes.Model;
 
-namespace mpp_tracer
+namespace Util.Interfaces
 {
     public interface IWriter
     {
