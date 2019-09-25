@@ -1,6 +1,8 @@
 using System;
+using mpp_tracer;
 using mpp_tracer.Classes.Model;
-using Util.Interfaces;
+using ITraceResultFormatter = Util.Interfaces.ITraceResultFormatter;
+using IWriter = Util.Interfaces.IWriter;
 
 namespace Util.Implementations
 {

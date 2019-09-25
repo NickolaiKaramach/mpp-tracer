@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
+using mpp_tracer;
 using mpp_tracer.Classes;
 using mpp_tracer.Classes.Model;
-using Util.Interfaces;
+using ITraceResultFormatter = Util.Interfaces.ITraceResultFormatter;
 
 namespace Util.Implementations
 {

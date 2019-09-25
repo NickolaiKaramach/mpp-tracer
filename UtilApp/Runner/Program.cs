@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Threading;
 using mpp_tracer.Classes;
-using Util.Implementations;
+
+using ConsoleWriter = Util.Implementations.ConsoleWriter;
+using FileWriter = Util.Implementations.FileWriter;
+using JsonTraceResultFormatter = Util.Implementations.JsonTraceResultFormatter;
+using XmlTraceResultFormatter = Util.Implementations.XmlTraceResultFormatter;
 
 namespace Util.Runner
 {
