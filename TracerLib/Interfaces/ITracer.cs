@@ -1,6 +1,6 @@
-using mpp_tracer.Classes.Model;
+using tracer.Classes.Model;
 
-namespace mpp_tracer.Interfaces
+namespace tracer.Interfaces
 {
     public interface ITracer
     {

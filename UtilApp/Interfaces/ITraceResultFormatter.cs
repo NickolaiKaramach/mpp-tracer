@@ -1,7 +1,6 @@
-using mpp_tracer;
-using mpp_tracer.Classes.Model;
+using tracer.Classes.Model;
 
-namespace Util.Interfaces
+namespace UtilApp.Interfaces
 {
     public interface ITraceResultFormatter
     {

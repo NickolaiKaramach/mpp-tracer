@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace mpp_tracer.Classes.Model
+namespace tracer.Classes.Model
 {
     public class MethodMetadata
     {

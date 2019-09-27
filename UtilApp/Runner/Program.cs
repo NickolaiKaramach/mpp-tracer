@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using mpp_tracer.Classes;
+using tracer.Classes;
+using ConsoleWriter = UtilApp.Implementations.ConsoleWriter;
+using FileWriter = UtilApp.Implementations.FileWriter;
+using JsonTraceResultFormatter = UtilApp.Implementations.JsonTraceResultFormatter;
+using XmlTraceResultFormatter = UtilApp.Implementations.XmlTraceResultFormatter;
 
-using ConsoleWriter = Util.Implementations.ConsoleWriter;
-using FileWriter = Util.Implementations.FileWriter;
-using JsonTraceResultFormatter = Util.Implementations.JsonTraceResultFormatter;
-using XmlTraceResultFormatter = Util.Implementations.XmlTraceResultFormatter;
-
-namespace Util.Runner
+namespace UtilApp.Runner
 {
     public class Program
     {
-        private static readonly Tracer Tracer = new Tracer();
+        private static readonly Tracer Tracer = Tracer.GetInstance();
 
         public static void Main1(string[] args)
         {

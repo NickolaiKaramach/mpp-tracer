@@ -1,13 +1,11 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
-using mpp_tracer;
-using mpp_tracer.Classes;
-using mpp_tracer.Classes.Model;
-using ITraceResultFormatter = Util.Interfaces.ITraceResultFormatter;
+using tracer.Classes;
+using tracer.Classes.Model;
 
-namespace Util.Implementations
+namespace UtilApp.Implementations
 {
-    public class XmlTraceResultFormatter : ITraceResultFormatter
+    public class XmlTraceResultFormatter : Interfaces.ITraceResultFormatter
     {
         public string FormatTraceResult(TraceResult traceResult)
         {
@@ -30,12 +28,14 @@ namespace Util.Implementations
         private XElement FormatThreadNode(KeyValuePair<int, ThreadLog> threadInfo)
         {
             var result = new XElement("thread");
-            result.Add(new XAttribute("id", threadInfo.Key));
-            result.Add(new XAttribute("time", threadInfo.Value.TimeSpent));
+            var (key, value) = threadInfo;
+            
+            result.Add(new XAttribute("id", key));
+            result.Add(new XAttribute("time", value.TimeSpent));
 
             return result;
         }
-
+        
         private XElement FormatAllMethodNode(MethodLog methodLog)
         {
             var result = FormatMethodNode(methodLog);

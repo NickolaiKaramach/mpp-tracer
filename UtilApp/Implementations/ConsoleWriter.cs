@@ -1,12 +1,10 @@
 using System;
-using mpp_tracer;
-using mpp_tracer.Classes.Model;
-using ITraceResultFormatter = Util.Interfaces.ITraceResultFormatter;
-using IWriter = Util.Interfaces.IWriter;
+using tracer.Classes.Model;
+using ITraceResultFormatter = UtilApp.Interfaces.ITraceResultFormatter;
 
-namespace Util.Implementations
+namespace UtilApp.Implementations
 {
-    public class ConsoleWriter : IWriter
+    public class ConsoleWriter : Interfaces.IWriter
     {
         private readonly ITraceResultFormatter _formatter;
 

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
-using mpp_tracer.Classes.Model;
+using tracer.Classes.Model;
 
-namespace mpp_tracer.Classes
+namespace tracer.Classes
 {
     public class MethodLog
     {

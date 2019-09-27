@@ -1,17 +1,17 @@
 using System;
 using System.Diagnostics;
 using System.Threading;
-using mpp_tracer.Classes.Model;
-using mpp_tracer.Interfaces;
+using tracer.Classes.Model;
+using tracer.Interfaces;
 
-namespace mpp_tracer.Classes
+namespace tracer.Classes
 {
     public class Tracer : ITracer
     {
         private readonly TraceResult _traceResult;
-        private Lazy<Tracer> _instance = new Lazy<Tracer>(() => new Tracer());
+        private static Lazy<Tracer> _instance = new Lazy<Tracer>(() => new Tracer());
 
-        public Tracer()
+        private Tracer()
         {
             _traceResult = new TraceResult();
         }
@@ -35,7 +35,7 @@ namespace mpp_tracer.Classes
             return _traceResult;
         }
 
-        public Tracer GetInstance()
+        public static Tracer GetInstance()
         {
             return _instance.Value;
         }

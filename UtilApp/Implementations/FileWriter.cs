@@ -1,13 +1,11 @@
 using System;
 using System.IO;
-using mpp_tracer;
-using mpp_tracer.Classes.Model;
-using ITraceResultFormatter = Util.Interfaces.ITraceResultFormatter;
-using IWriter = Util.Interfaces.IWriter;
+using tracer.Classes.Model;
+using ITraceResultFormatter = UtilApp.Interfaces.ITraceResultFormatter;
 
-namespace Util.Implementations
+namespace UtilApp.Implementations
 {
-    public class FileWriter : IWriter
+    public class FileWriter : Interfaces.IWriter
     {
         private readonly ITraceResultFormatter _iTraceResultFormatter;
 
