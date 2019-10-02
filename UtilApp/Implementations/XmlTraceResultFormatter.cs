@@ -12,7 +12,7 @@ namespace UtilApp.Implementations
             var xDoc = new XDocument();
             var rootNode = new XElement("threads");
 
-            foreach (var threadLog in traceResult.ThreadsLogs)
+            foreach (var threadLog in traceResult.GetThreadLogs())
             {
                 var threadNode = FormatThreadNode(threadLog);
 

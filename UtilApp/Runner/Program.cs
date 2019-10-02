@@ -7,6 +7,7 @@ using FileWriter = UtilApp.Implementations.FileWriter;
 using JsonTraceResultFormatter = UtilApp.Implementations.JsonTraceResultFormatter;
 using XmlTraceResultFormatter = UtilApp.Implementations.XmlTraceResultFormatter;
 
+
 namespace UtilApp.Runner
 {
     public class Program

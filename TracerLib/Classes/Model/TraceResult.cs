@@ -8,8 +8,10 @@ namespace tracer.Classes.Model
     {
         private readonly ConcurrentDictionary<int, ThreadLog> _threadsLogs = new ConcurrentDictionary<int, ThreadLog>();
 
-        public IEnumerable<KeyValuePair<int, ThreadLog>> ThreadsLogs => _threadsLogs;
-
+        public ConcurrentDictionary<int, ThreadLog> GetThreadLogs()
+        {
+            return _threadsLogs;
+        }
         public void StartTracingThread(int idThread, MethodBase methodBase)
         {
             var threadLog = new ThreadLog {ThreadId = idThread};
