@@ -15,7 +15,7 @@ namespace UtilApp.Implementations
             UriToFile = uriToFile;
         }
 
-        public string UriToFile { get; set; }
+        private string UriToFile { get; }
 
         public void WriteString(string _string)
         {

@@ -9,7 +9,7 @@ namespace tracer.Classes
     public class Tracer : ITracer
     {
         private TraceResult _traceResult;
-        private static Lazy<Tracer> _instance = new Lazy<Tracer>(() => new Tracer());
+        private static readonly Lazy<Tracer> Instance = new Lazy<Tracer>(() => new Tracer());
 
         private Tracer()
         {
@@ -35,9 +35,9 @@ namespace tracer.Classes
             return _traceResult;
         }
 
-        public static Tracer GetInstance()
+        public static ITracer GetInstance()
         {
-            return _instance.Value;
+            return Instance.Value;
         }
 
         public void ClearTraceResult()

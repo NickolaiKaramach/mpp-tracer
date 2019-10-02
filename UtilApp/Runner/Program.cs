@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using tracer.Classes;
+using tracer.Interfaces;
 using ConsoleWriter = UtilApp.Implementations.ConsoleWriter;
 using FileWriter = UtilApp.Implementations.FileWriter;
 using JsonTraceResultFormatter = UtilApp.Implementations.JsonTraceResultFormatter;
@@ -10,9 +10,9 @@ using XmlTraceResultFormatter = UtilApp.Implementations.XmlTraceResultFormatter;
 
 namespace UtilApp.Runner
 {
-    public class Program
+    public abstract class Program
     {
-        private static readonly Tracer Tracer = Tracer.GetInstance();
+        private static readonly ITracer Tracer = tracer.Classes.Tracer.GetInstance();
 
         public static void Main1(string[] args)
         {

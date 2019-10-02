@@ -9,5 +9,7 @@ namespace tracer.Interfaces
         void StopTrace();
 
         TraceResult GetTraceResult();
+
+        void ClearTraceResult();
     }
 }
